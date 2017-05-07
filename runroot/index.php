@@ -8,6 +8,10 @@
  * @brief      : 入口文件
  */
 
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
 //定义项目的根目录
 define('_ROOT', dirname(__DIR__));
 
@@ -34,7 +38,7 @@ define('APP_DEBUG', true);
 $conf = require_once CONF_ROOT . 'conf.php';
 
 //加载框架核心文件
-require_once  FR_ROOT . 'Fphp.php';
+require_once  FR_ROOT . '/core/Fphp.php';
 
 //run
 (new Fphp($conf))->run();

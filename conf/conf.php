@@ -10,14 +10,15 @@
 
 return $conf = [
   'db' => [
-      'host'    => '',
-      'port'    => '',
-      'user'    => '',
-      'pass'    => '',
-      'charset' => 'utf8',
+      'host'     => '',
+      'port'     => '',
+      'username' => '',
+      'password' => '',
+      'charset'  => 'utf8',
+      'dbname'   => '',
   ],
   'default' => [
-      'Controller' => 'Item',
+      'Controller' => 'Home',
       'Action'     => 'index',
       ''
   ],

@@ -1,0 +1,23 @@
+input {
+    font-family:georgia,times;
+    font-size:24px;
+    line-height:1.2em;
+}
+
+a {
+    color:blue;
+    font-family:georgia,times;
+    font-size:20px;
+    line-height:1.2em;
+    text-decoration:none;
+}
+
+a:hover {
+    text-decoration:underline;
+}
+
+h1 {
+    color:#000000;
+    font-size:41px;
+    border-bottom:1px dotted #cccccc;
+}

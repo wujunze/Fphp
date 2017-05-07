@@ -8,6 +8,7 @@
  * @filesource : Fphp.php
  * @brief      : 框架核心文件
  */
+
 class Fphp
 {
     /**
@@ -42,8 +43,9 @@ class Fphp
      */
     public function router()
     {
-        $controllerName = $this->_conf['Controller'];
-        $actionName = $this->_conf['Action'];
+
+        $controllerName = $this->_conf['default']['Controller'];
+        $actionName = $this->_conf['default']['Action'];
         $param = [];
 
         $url = $_SERVER['REQUEST_URI'];
@@ -70,7 +72,7 @@ class Fphp
             $param = $urlArray ? $urlArray : array();
         }
         // 判断控制器和操作是否存在
-        $controller = $controllerName . 'Controller';
+        $controller = $controllerName;
         if (!class_exists($controller)) {
             exit($controller . '控制器不存在');
         }
@@ -82,10 +84,10 @@ class Fphp
     }
 
     /**
-     * 框架分发器
-     * @param string $controllerName  类名
-     * @param string $actionName      方法名
-     * @param array  $param           参数
+     * 框架调度器
+     * @param string $controllerName 类名
+     * @param string $actionName 方法名
+     * @param array $param 参数
      */
     public function dispatch($controllerName, $actionName, $param)
     {
@@ -96,14 +98,15 @@ class Fphp
     /**
      * 设置Debug环境变量
      */
-    public function setDebugENV(){
+    public function setDebugENV()
+    {
 
         if (APP_DEBUG === true) {
             error_reporting(E_ALL);
-            ini_set('display_errors','On');
+            ini_set('display_errors', 'On');
         } else {
             error_reporting(E_ALL);
-            ini_set('display_errors','Off');
+            ini_set('display_errors', 'Off');
             ini_set('log_errors', 'On');
         }
 
@@ -127,15 +130,15 @@ class Fphp
     public function removeMagicQuotes()
     {
         if (get_magic_quotes_gpc()) {
-            $_GET = isset($_GET) ? $this->_stripSlashesDeep($_GET ) : '';
-            $_POST = isset($_POST) ? $this->_stripSlashesDeep($_POST ) : '';
+            $_GET = isset($_GET) ? $this->_stripSlashesDeep($_GET) : '';
+            $_POST = isset($_POST) ? $this->_stripSlashesDeep($_POST) : '';
             $_COOKIE = isset($_COOKIE) ? $this->_stripSlashesDeep($_COOKIE) : '';
             $_SESSION = isset($_SESSION) ? $this->_stripSlashesDeep($_SESSION) : '';
         }
     }
 
     /**
-     *
+     *移除自定义全局变量
      */
     public function unregisterGlobals()
     {
@@ -157,7 +160,7 @@ class Fphp
     public function setDbConfig()
     {
         if ($this->_conf['db']) {
-            Mod::setDbConfig($this->_conf['db']);
+            Model::setDbConfig($this->_conf['db']);
         }
     }
 
